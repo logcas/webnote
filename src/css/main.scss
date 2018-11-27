@@ -1,0 +1,68 @@
+$backgroundColor: #e5e5e5;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, .app {
+    width: 100%;
+    height: 100%;
+}
+
+.app .thumb {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -210px;
+    width: 250px;
+    height: 100%;
+    border-right: 1px solid #000;
+    overflow: auto;
+    background: $backgroundColor;
+    z-index: 10;
+    transition: .5s all ease-in-out;
+}
+
+.app .thumb:hover {
+    left: 0;
+}
+
+.app .thumb .thumb-item {
+    display: block;
+    margin: 10px;
+    height: 150px;
+    border: 1px solid #000;
+}
+
+.app .toolbar {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-left: 50px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #000;
+    background: #e5e5e5;
+}
+
+.app .toolbar li {
+    float: left;
+    font-size: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    list-style: none;
+}
+
+.app .container {
+    width: 100%;
+    text-align: center;
+    padding-top: 50px;
+}
+
+#canvas {
+    box-shadow: 0 0 20px 10px #e5e5e5;
+}
