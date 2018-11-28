@@ -6,7 +6,7 @@ class EventListener {
     }
 
     on(uid, elem, eventName, callback) {
-        let cb = callback.bind(elem);
+        let cb = callback.bind(this);
         this.events[uid] = {
             elem,
             eventName,
@@ -22,7 +22,7 @@ class EventListener {
     delegate(uid, elem, tagName, eventName, callback) {
         let cb = function(e) {
             if(e.target.tagName.toLowerCase() === tagName.toLowerCase()) {
-                callback.call(e.target, e);
+                callback.call(this, e);
             }
         }
         this.events[uid] = {

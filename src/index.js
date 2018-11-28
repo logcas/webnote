@@ -7,6 +7,7 @@
        const WIDTH = 900,
            HEIGHT = 550;
 
+       var container = document.querySelector('.container');
        var canvas = document.querySelector('#canvas');
        canvas.width = WIDTH;
        canvas.height = HEIGHT;
@@ -39,37 +40,34 @@
 
        st.render();
 
-       let mouseX,
-           mouseY,
-           isMove = false;
        var eventListener = new EventListener();
        eventListener.on('canvas_down', canvas, 'mousedown', function (e) {
            sh.fn[sh.status].blur();
 
-           mouseX = e.layerX;
-           mouseY = e.layerY;
+           this.mouseX = e.layerX;
+           this.mouseY = e.layerY;
 
-           sh.fn[sh.status].select(mouseX, mouseY) && (isMove = true);
+           sh.fn[sh.status].select(this.mouseX, this.mouseY) && (this.isMove = true);
        });
 
        eventListener.on('canvas_move', canvas, 'mousemove', function (e) {
-           if (!isMove) return;
-           let deltaX = e.layerX - mouseX,
-               deltaY = e.layerY - mouseY;
+           if (!this.isMove) return;
+           let deltaX = e.layerX - this.mouseX,
+               deltaY = e.layerY - this.mouseY;
 
            sh.fn[sh.status].move(deltaX, deltaY);
 
-           mouseX = e.layerX;
-           mouseY = e.layerY;
+           this.mouseX = e.layerX;
+           this.mouseY = e.layerY;
        });
 
        eventListener.on('canvas_up', canvas, 'mouseup', function (e) {
-           isMove = false;
+           this.isMove = false;
        });
 
        var toolbar = document.querySelector('.toolbar');
-       eventListener.delegate('toolbar_click', toolbar, 'span', 'click', function(e) {
-           let status = this.getAttribute('data-type');
+       eventListener.delegate('toolbar_click', toolbar, 'span', 'click', function (e) {
+           let status = e.target.getAttribute('data-type');
            console.log(status);
            sh.status = status;
            sh.fn[sh.status].init();
