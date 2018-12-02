@@ -21,7 +21,7 @@ body, .app {
     border-right: 1px solid #000;
     overflow: auto;
     background: $backgroundColor;
-    z-index: 10;
+    z-index: 100;
     transition: .5s all ease-in-out;
 }
 
@@ -47,14 +47,21 @@ body, .app {
     line-height: 40px;
     border-bottom: 1px solid #000;
     background: #e5e5e5;
+    z-index: 99;
 }
 
 .app .toolbar li {
     float: left;
+    display: block;
+    width: 20px;
     font-size: 20px;
     margin-right: 10px;
     cursor: pointer;
     list-style: none;
+
+    span {
+        cursor: pointer;
+    }
 }
 
 .app .container {

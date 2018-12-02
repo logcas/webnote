@@ -18,6 +18,18 @@ let utils = {
             }
         }
         return !isSame;
+    },
+
+    // 事件委托
+    delegate: function(elem, tagName, eventName, callback) {
+        if(!elem || !tagName || !eventName || !callback) return;
+        elem = typeof elem === 'object' ? elem : document.querySelector(elem);
+        let cb = function(e) {
+            if(e.target.tagName.toLowerCase() === tagName.toLowerCase()) {
+                return callback(e);
+            }
+        }
+        elem.addEventListener(eventName, cb);
     }
 
 }
