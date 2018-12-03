@@ -66,11 +66,17 @@ body, .app {
 
 .app .container {
     position: relative;
-    width: 100%;
+    width: 950px;
     text-align: center;
     padding-top: 50px;
 }
 
 #canvas {
     box-shadow: 0 0 20px 10px #e5e5e5;
+}
+
+#bg-canvas {
+    position: absolute;
+    left: 25px;
+    z-index: -1;
 }

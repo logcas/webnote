@@ -46,6 +46,11 @@ class ComponentStack {
         }
     }
 
+    pop() {
+        this.cps.pop();
+        this.render();
+    }
+
     sort() {
         this.cps.sort((a, b) => {
             return a.weight < b.weight ? -1 : 1;
