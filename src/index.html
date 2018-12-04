@@ -6,9 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>WebNote</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -22,9 +24,20 @@
             <li class="thumb-item">这是缩略图</li>
         </ul>
         <ul class="toolbar">
-            <li data-type="select"><span data-type="select" class="glyphicon glyphicon-asterisk" aria-hidden="true" title="选择"></span></li>
+            <li data-type="select"><span data-type="select" class="glyphicon glyphicon-asterisk" aria-hidden="true"
+                    title="选择"></span></li>
             <li><span data-type="text" class="glyphicon glyphicon-font" aria-hidden="true" title="文字"></span></li>
             <li><span data-type="select" class="glyphicon glyphicon-picture" aria-hidden="true" title="图片"></span></li>
+            <li>
+                <select name="fontSize">
+                    <option value="5px">5px</option>
+                    <option value="10px">10px</option>
+                    <option value="15px">15px</option>
+                    <option value="20px">20px</option>
+                    <option value="25px">25px</option>
+                    <option value="30px">30px</option>
+                </select>
+            </li>
         </ul>
         <div class="container">
             <canvas id="canvas">你的浏览器不支持canvas</canvas>
@@ -33,21 +46,21 @@
     </div>
     <div class="modal fade" id="textModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">输入文字</h4>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">输入文字</h4>
+                </div>
+                <div class="modal-body">
+                    <textarea class="form-control" rows="5" placeholder="输入文本信息..."></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="saveText">保存</button>
+                </div>
             </div>
-            <div class="modal-body">
-              <textarea class="form-control" rows="5" placeholder="输入文本信息..."></textarea>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-              <button type="button" class="btn btn-primary" id="saveText">保存</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
 </body>
 
 </html>

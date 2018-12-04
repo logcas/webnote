@@ -4,6 +4,7 @@ import Text from './js/components/text';
 import Stack from './js/componentStack';
 import StatusManager from './js/status';
 import _ from './js/utils/utils';
+import WebNode from './js/webnote';
 
 const WIDTH = 900,
     HEIGHT = 550;
@@ -12,6 +13,19 @@ const canvas = document.querySelector('#canvas'),
       bgCanvas = document.querySelector('#bg-canvas');
 canvas.width = bgCanvas.width = WIDTH;
 canvas.height = bgCanvas.height = HEIGHT;
+
+const app = new WebNode({
+    bgCanvas: bgCanvas,
+    cpCanvas: canvas,
+    bgCtx: bgCanvas.getContext('2d'),
+    cpCtx: canvas.getContext('2d'),
+    toolBar: document.querySelector('.toolbar'),
+    fontFormat: {
+        fontSize: document.querySelector('.toolbar select[name="fontSize"]')
+    }
+});
+
+/*
 const ctx = canvas.getContext('2d'),
       bgctx = bgCanvas.getContext('2d');
       
@@ -54,7 +68,7 @@ import textStatus from './js/status/text';
 
 // 选择状态
 sm.addStatus('select', selectStatus);
-// 插入文本状态
+// 文本状态
 sm.addStatus('text', textStatus);
 
 _.delegate('.toolbar', 'span', 'click', function(e) {
@@ -62,3 +76,5 @@ _.delegate('.toolbar', 'span', 'click', function(e) {
     sm.setStatus(status);
     console.log(status);
 });
+
+*/

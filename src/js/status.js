@@ -1,11 +1,12 @@
 import _ from './utils/utils';
 
 class StatusManager {
-    constructor(canvas, componentStack) {
+    constructor(canvas, componentStack, options) {
         this.canvas = canvas; // 画布
         this.stack = componentStack; // 组件栈
         this.status = 'select'; // 当前状态
         this.eventValues = {}; // 保存事件用到的共享属性
+        this.options = options || {};
     }
 
     addStatus(statusName, cbObject) {

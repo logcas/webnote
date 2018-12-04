@@ -60,10 +60,13 @@ const select = {
                 cur.select = true;
                 vals.selectType = cur.component.type;
                 vals.isMove = true;
+                vals.target = cur;
                 cur.component.draw(this.stack.ctx, cur.select);
                 return;
             }
         }
+
+        vals.target = null;
 
     },
     'mouseup': function (e, vals) {
