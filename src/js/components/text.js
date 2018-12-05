@@ -18,12 +18,12 @@ class Text extends Frame{
 
         let attrs = this.attributes;
 
-        let font = `${attrs.fontSize || '36px'} Arial`,
-            color = attrs.color || '#000',
-            text = attrs.text || '',
-            x = attrs.x || 0,
-            y = attrs.y || 0,
-            width = attrs.width || 0;
+        let font = `${attrs.fontSize || (attrs.fontSize = '30px')} ${attrs.fontFamily || (attrs.fontFamily = 'Arial')}`,
+            color = attrs.color || (attrs.color = '#000'),
+            text = attrs.text || (attrs.text = ''),
+            x = attrs.x || (attrs.x = 0),
+            y = attrs.y || (attrs.y = 0),
+            width = attrs.width || (attrs.width = 0);
 
         ctx.save();
         ctx.beginPath();

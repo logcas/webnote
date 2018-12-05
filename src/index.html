@@ -26,7 +26,7 @@
         <ul class="toolbar">
             <li data-type="select"><span data-type="select" class="glyphicon glyphicon-asterisk" aria-hidden="true"
                     title="选择"></span></li>
-            <li><span data-type="text" class="glyphicon glyphicon-font" aria-hidden="true" title="文字"></span></li>
+            <li><span data-type="text" class="glyphicon glyphicon-pencil" aria-hidden="true" title="文字"></span></li>
             <li><span data-type="select" class="glyphicon glyphicon-picture" aria-hidden="true" title="图片"></span></li>
             <li>
                 <select name="fontSize">
@@ -38,6 +38,17 @@
                     <option value="30px">30px</option>
                 </select>
             </li>
+            <li>
+                <select name="fontFamily">
+                    <option value="Arial">Aria Family</option>
+                    <option value="Microsoft YaHei">微软雅黑</option>
+                    <option value="SimHei">黑体</option>
+                    <option value="SimSun">宋体</option>
+                    <option value="KaiTi">楷体</option>
+                    <option value="STXihei">华文细黑</option>
+                </select>
+            </li>
+            <li><input type="color" name="fontColor"></li>
         </ul>
         <div class="container">
             <canvas id="canvas">你的浏览器不支持canvas</canvas>

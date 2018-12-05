@@ -31,7 +31,12 @@ const resizeHook = {
 
 const modal = $('#textModal'),
     saveText = $('#saveText'),
-    textarea = $('#textModal textarea');
+    textarea = $('#textModal textarea'),
+    fontFormat = {
+        size: $('select[name="fontSize"]'),
+        color: $('input[name="fontColor"]'),
+        family: $('select[name="fontFamily"]')
+    }
 
 const select = {
     'mouseover': function (e, vals) {},
@@ -62,6 +67,19 @@ const select = {
                 vals.isMove = true;
                 vals.target = cur;
                 cur.component.draw(this.stack.ctx, cur.select);
+
+                if(vals.selectType === 'text') {
+                    let { fontSize, fontFamily, color } = cur.component.attrs;
+                    fontFormat.size.children().attr('selected',false);
+                    fontFormat.size.children(`option[value="${fontSize}"]`).attr('selected',true);
+                    fontFormat.family.children().attr('selected',false);
+                    fontFormat.family.children(`option[value="${fontFamily}"]`).attr('selected',true);
+                    console.log(color);
+                    // ! TODO：工具栏颜色盘显示问题
+                    //fontFormat.color.value = color;
+                    //fontFormat.color.css('color',color);
+                }
+
                 return;
             }
         }

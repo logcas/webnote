@@ -30,6 +30,13 @@ let utils = {
             }
         }
         elem.addEventListener(eventName, cb);
+    },
+
+    // 事件
+    on: function(elem, eventName, callback) {
+        if(!elem||!eventName||!callback) return;
+        elem = typeof elem === 'object' ? elem : document.querySelector(elem);
+        elem.addEventListener(eventName,callback);
     }
 
 }

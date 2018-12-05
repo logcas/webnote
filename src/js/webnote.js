@@ -81,8 +81,21 @@ class WebNote {
 
             switch(type) {
                 case 'fontSize': cur.component.setAttr({fontSize: value});break;
+                case 'fontFamily': cur.component.setAttr({fontFamily: value});break;
             }
         });
+
+        _.on('input[name="fontColor"]', 'change', (e) => {
+            e.target.click();
+            console.log(e.target.value);
+            let color = e.target.value,
+                cur = this.statusManager.eventValues.target;
+            
+            if(!cur) return;
+
+            cur.component.setAttr({color});
+
+        })
     }
 }
 
