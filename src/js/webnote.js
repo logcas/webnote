@@ -6,9 +6,12 @@ import textStatus from './status/text';
 
 import font_family from '../config/fontFamily.json';
 
+import imageModal from './status/image';
 
-const WIDTH = 900,
-    HEIGHT = 550;
+import config from '../config/common';
+
+const WIDTH = config.WIDTH,
+    HEIGHT = config.HEIGHT;
 
 class WebNote {
     constructor(options) {
@@ -51,6 +54,7 @@ class WebNote {
     }
 
     setBackground(color = 'yellow') {
+        console.log(color);
         this.attributes.bgCtx.rect(0, 0, WIDTH, HEIGHT);
         this.attributes.bgCtx.fillStyle = color;
         this.attributes.bgCtx.fill();
@@ -83,6 +87,9 @@ class WebNote {
                 case 'text':
                     this.attributes.cpCanvas.style.cursor = 'crosshair';
                     break;
+                case 'image':
+                    imageModal.show(this);
+                    return;
                 default:
                     this.attributes.cpCanvas.style.cursor = 'default';
             }
