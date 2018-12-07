@@ -47,6 +47,10 @@ module.exports = {
                         outputPath: 'images'
                     }
                 }]
+            },
+            {
+                test: /\.(woff|woff2|svg|eot|ttf)\??.*$/,
+                use: ['file-loader']
             }
         ]
     },

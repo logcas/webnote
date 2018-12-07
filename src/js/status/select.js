@@ -72,6 +72,8 @@ const select = {
                     let { fontSize, fontFamily, color } = cur.component.attrs;
                     fontFormat.size.children().attr('selected',false);
                     fontFormat.size.children(`option[value="${fontSize}"]`).attr('selected',true);
+                    console.log(fontSize);
+                    console.log(fontFamily);
                     fontFormat.family.children().attr('selected',false);
                     fontFormat.family.children(`option[value="${fontFamily}"]`).attr('selected',true);
                     console.log(color);
@@ -84,6 +86,7 @@ const select = {
             }
         }
 
+        // 什么都没点的时候，选择的目标为null
         vals.target = null;
 
     },

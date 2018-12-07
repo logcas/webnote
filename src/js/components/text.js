@@ -17,8 +17,12 @@ class Text extends Frame{
         select && super.draw(ctx);
 
         let attrs = this.attributes;
+        attrs.fontSize || (attrs.fontSize = '30px');
+        attrs.fontFamily || (attrs.fontFamily = 'Arial');
+        attrs.fontBold || (attrs.fontBold = '');
+        attrs.fontItalic || (attrs.fontItalic = '');
 
-        let font = `${attrs.fontSize || (attrs.fontSize = '30px')} ${attrs.fontFamily || (attrs.fontFamily = 'Arial')}`,
+        let font = `${attrs.fontBold} ${attrs.fontItalic} ${attrs.fontSize} ${attrs.fontFamily}`,
             color = attrs.color || (attrs.color = '#000'),
             text = attrs.text || (attrs.text = ''),
             x = attrs.x || (attrs.x = 0),
@@ -27,8 +31,6 @@ class Text extends Frame{
 
         ctx.save();
         ctx.beginPath();
-
-  //      select && _drawShadow.call(this,ctx);
 
         ctx.font = font;
         ctx.textBaseline = 'top';

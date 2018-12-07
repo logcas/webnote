@@ -59,6 +59,8 @@ const text = {
             modal.modal('hide');
             self.stack.render();
         });
+        this.setStatus('select');
+        this.canvas.style.cursor = 'default';
     }
 };
 
