@@ -53,30 +53,42 @@ class WebNote {
         this.statusManager.addStatus('text', textStatus); // 文本状态
     }
 
-    setBackground(color = 'yellow') {
-        console.log(color);
-        this.attributes.bgCtx.rect(0, 0, WIDTH, HEIGHT);
-        this.attributes.bgCtx.fillStyle = color;
-        this.attributes.bgCtx.fill();
+    setBackground(style) {
+        style || (style = {});
+        let isImage = style.image ? true : false;
+        if (!isImage) {
+            this.attributes.bgCtx.rect(0, 0, WIDTH, HEIGHT);
+            this.attributes.bgCtx.fillStyle = style.color || 'yellow';
+            this.attributes.bgCtx.fill();
+        } else {
+            this.attributes.bgCtx.drawImage(style.image,0,0,WIDTH,HEIGHT);
+        }
     }
 
     observeToolBar() {
         _.delegate(this.attributes.toolBar, 'span', 'click', (e) => {
 
             let format = e.target.getAttribute('data-text-format');
-            if(format) {       
+            if (format) {
                 let cur = this.statusManager.eventValues.target;
                 if (!cur) return;
-                let { fontBold, fontItalic } = cur.component.attrs;
+                let {
+                    fontBold,
+                    fontItalic
+                } = cur.component.attrs;
                 fontBold = fontBold ? '' : 'bold';
                 fontItalic = fontItalic ? '' : 'italic';
-                switch(format) {
-                    case 'bold': cur.component.setAttr({
-                        fontBold
-                    });break;
-                    case 'italic': cur.component.setAttr({
-                        fontItalic
-                    });break;
+                switch (format) {
+                    case 'bold':
+                        cur.component.setAttr({
+                            fontBold
+                        });
+                        break;
+                    case 'italic':
+                        cur.component.setAttr({
+                            fontItalic
+                        });
+                        break;
                 }
                 return;
             }
@@ -153,15 +165,15 @@ class WebNote {
         for (let i = SIZE_MIN; i <= SIZE_MAX; ++i) {
             fontSize.appendChild(createOption(i + 'px', i + 'px'));
         }
-        
+
         // 初始化文字字体选项
         let fontFamily = document.querySelector('select[name="fontFamily"]'),
             dict = font_family;
-        for(let fontName in dict) {
-            fontFamily.appendChild(createOption(fontName,dict[fontName]));
+        for (let fontName in dict) {
+            fontFamily.appendChild(createOption(fontName, dict[fontName]));
         }
 
-        
+
 
     }
 }

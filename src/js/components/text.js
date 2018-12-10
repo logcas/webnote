@@ -21,6 +21,7 @@ class Text extends Frame{
         attrs.fontFamily || (attrs.fontFamily = 'Arial');
         attrs.fontBold || (attrs.fontBold = '');
         attrs.fontItalic || (attrs.fontItalic = '');
+        attrs.lineHeight || (attrs.lineHeight = parseInt(attrs.fontSize) / 3);
 
         let font = `${attrs.fontBold} ${attrs.fontItalic} ${attrs.fontSize} ${attrs.fontFamily}`,
             color = attrs.color || (attrs.color = '#000'),
@@ -29,13 +30,18 @@ class Text extends Frame{
             y = attrs.y || (attrs.y = 0),
             width = attrs.width || (attrs.width = 0);
 
+        text = text.split('\n');
+
         ctx.save();
         ctx.beginPath();
 
         ctx.font = font;
         ctx.textBaseline = 'top';
         ctx.fillStyle = color;
-        ctx.fillText(text, x, y, width);
+
+        for(let i = 0,len = text.length;i<len;++i) {
+            ctx.fillText(text[i], x, y + (attrs.lineHeight + parseInt(attrs.fontSize)) * i, width);
+        }
 
         ctx.restore();
 

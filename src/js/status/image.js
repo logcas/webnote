@@ -33,10 +33,9 @@ var imageModal = {
                 bg.height = config.HEIGHT + 'px';
                 bg.src = reader.result;
                 bg.onload = function () {
-                    let ctx = webnote.attributes.bgCtx,
-                        pattern = ctx.createPattern(bg, 'no-repeat');
-                    console.log(ctx.createPattern(bg, 'no-repeat'));
-                    webnote.setBackground(pattern);
+                    webnote.setBackground({
+                        image: bg
+                    });
                 }
             }
         });
