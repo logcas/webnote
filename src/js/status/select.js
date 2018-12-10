@@ -123,6 +123,8 @@ const select = {
     },
     // 双击目标更改文本
     'dblclick': function (e, vals) {
+        if(vals.selectType!=='text') return;
+
         let mouseX = vals.mouseX = e.layerX,
             mouseY = vals.mouseY = e.layerY,
             text,

@@ -1,4 +1,5 @@
 import config from '../../config/common';
+import _Image from '../components/image';
 
 const modal = $('#imageModal'),
     insertImage = $('#insertImage'),
@@ -14,7 +15,30 @@ var imageModal = {
         });
 
         insertImage.on('click', function (e) {
-            console.log('插入图片');
+            console.log('click');
+            let f= imageLoader.files[0];
+            if(!f || !/image/.test(f.type)) return;
+            let reader = new FileReader();
+            reader.readAsDataURL(f);
+            reader.onerror = function() {
+                alert("文件读取失败！");
+            };
+            reader.onload = function() {
+                console.log('onload');
+                let img = new Image();
+                img.src = reader.result;
+                img.onload = function() {
+                    let image = new _Image({
+                        x:0,
+                        y:0,
+                        width: img.width,
+                        height: img.height,
+                        img: img
+                    },webnote.componentStack);
+                    webnote.componentStack.add(image);
+                    webnote.componentStack.render();
+                };
+            };
         });
 
         setBackground.on('click', function (e) {
