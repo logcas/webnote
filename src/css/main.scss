@@ -11,16 +11,27 @@ body, .app {
     height: 100%;
 }
 
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        margin: 10px 0;
+        padding: 0;
+    }
+}
+
 .app .thumb {
     display: block;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: -210px;
     width: 250px;
     height: 100%;
-    border-right: 1px solid #000;
     overflow: auto;
-    background: $backgroundColor;
+    background: #FAFBFC;
+    box-shadow: 0 0 20px #C5D9E8;
     z-index: 100;
     transition: .5s all ease-in-out;
 }
@@ -36,6 +47,22 @@ body, .app {
     border: 1px solid #000;
 }
 
+.app .detailPanel {
+    position: fixed;
+    top: 50%;
+    right: -250px;
+    width: 250px;
+    height: 500px;
+    background: #FFF;
+    transform: translateY(-50%);
+    z-index: 999;
+    transition: all 0.5s ease-in-out;
+
+    &.fadeIn {
+        right: 5px;
+    }
+}
+
 .app .toolbar {
     display: block;
     position: absolute;
@@ -45,9 +72,10 @@ body, .app {
     padding-left: 50px;
     height: 40px;
     line-height: 40px;
-    border-bottom: 1px solid #000;
-    background: #e5e5e5;
+    background: #FAFBFC;
+    box-shadow: 0 0 20px #C5D9E8;
     z-index: 99;
+
 }
 
 .app .toolbar li {
@@ -55,8 +83,10 @@ body, .app {
     display: block;
     font-size: 20px;
     margin-right: 10px;
+    margin-top: 0;
     cursor: pointer;
     list-style: none;
+    line-height: 40px;
 
     span {
         cursor: pointer;
@@ -75,7 +105,7 @@ body, .app {
 }
 
 #canvas {
-    box-shadow: 0 0 20px 10px #e5e5e5;
+    box-shadow: 0 0 2px #2C405A;
 }
 
 #bg-canvas {

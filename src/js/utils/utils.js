@@ -37,6 +37,13 @@ let utils = {
         if(!elem||!eventName||!callback) return;
         elem = typeof elem === 'object' ? elem : document.querySelector(elem);
         elem.addEventListener(eventName,callback);
+    },
+
+    // 移除事件
+    un: function(elem, eventName, callback) {
+        if(!elem||!eventName||!callback) return;
+        elem = typeof elem === 'object' ? elem : document.querySelector(elem);
+        elem.removeEventListener(eventName,callback);
     }
 
 }

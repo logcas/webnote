@@ -10,6 +10,8 @@ import imageModal from './status/image';
 
 import config from '../config/common';
 
+import DomObserver from './domObserver';
+
 const WIDTH = config.WIDTH,
     HEIGHT = config.HEIGHT;
 
@@ -36,6 +38,7 @@ class WebNote {
             new StatusManager(this.attributes.cpCanvas, this.componentStack, {
                 fontFormat: this.attributes.fontFormat
             });
+        this.DomObserver = new DomObserver(this.componentStack,this.statusManager);
         this.init();
     }
 
@@ -45,6 +48,9 @@ class WebNote {
         this.initStatus();
         this.setBackground();
         this.componentStack.render();
+        this.attributes.cpCanvas.oncontextmenu = function(e) {
+            e.preventDefault();
+        }
     }
 
     initStatus() {
@@ -58,7 +64,7 @@ class WebNote {
         let isImage = style.image ? true : false;
         if (!isImage) {
             this.attributes.bgCtx.rect(0, 0, WIDTH, HEIGHT);
-            this.attributes.bgCtx.fillStyle = style.color || 'yellow';
+            this.attributes.bgCtx.fillStyle = style.color || '#ECF5FD';
             this.attributes.bgCtx.fill();
         } else {
             this.attributes.bgCtx.drawImage(style.image,0,0,WIDTH,HEIGHT);
@@ -108,45 +114,6 @@ class WebNote {
             this.attributes.status = status;
             this.statusManager.setStatus(status);
         });
-
-        _.delegate(this.attributes.toolBar, 'select', 'change', (e) => {
-            console.log(e.target.value);
-            console.log(e.target.name);
-
-            let cur = this.statusManager.eventValues.target;
-
-            if (!cur) return;
-
-            let type = e.target.name,
-                value = e.target.value;
-
-            switch (type) {
-                case 'fontSize':
-                    cur.component.setAttr({
-                        fontSize: value
-                    });
-                    break;
-                case 'fontFamily':
-                    cur.component.setAttr({
-                        fontFamily: value
-                    });
-                    break;
-            }
-        });
-
-        _.on('input[name="fontColor"]', 'change', (e) => {
-            e.target.click();
-            console.log(e.target.value);
-            let color = e.target.value,
-                cur = this.statusManager.eventValues.target;
-
-            if (!cur) return;
-
-            cur.component.setAttr({
-                color
-            });
-
-        })
     }
 
     initToolBar() {

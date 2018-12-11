@@ -23,3 +23,5 @@ const app = new WebNode({
         fontSize: document.querySelector('.toolbar select[name="fontSize"]')
     }
 });
+
+

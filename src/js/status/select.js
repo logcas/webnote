@@ -32,11 +32,17 @@ const resizeHook = {
 const modal = $('#textModal'),
     saveText = $('#saveText'),
     textarea = $('#textModal textarea'),
-    fontFormat = {
-        size: $('select[name="fontSize"]'),
-        color: $('input[name="fontColor"]'),
-        family: $('select[name="fontFamily"]')
+    detailPanel = $('.detailPanel'),
+    controls = {
+        'text': $('.fontControl'),
+        'image': $('.imageControl')
+    };
+
+function hideAll() {
+    for(let k in controls) {
+        controls[k].css('display','none');
     }
+}
 
 const select = {
     'mouseover': function (e, vals) {},
@@ -59,6 +65,18 @@ const select = {
             }
         }
 
+        // ! 解决叠层选择不正确的问题
+        if(vals.target && vals.target.component.isInside(mouseX,mouseY)) {
+            vals.target.select = true;
+            vals.selectType = vals.target.component.type;
+            vals.isMove = true;
+            vals.target.component.draw(this.stack.ctx, true);
+            hideAll();
+            controls[vals.selectType] && controls[vals.selectType].css('display','block');
+            detailPanel.addClass('fadeIn');
+            return;
+        }
+
         for (let i = 0, len = this.stack.cps.length; i < len; ++i) {
             let cur = this.stack.cps[i];
             if (cur.component.isInside(mouseX, mouseY)) {
@@ -67,28 +85,17 @@ const select = {
                 vals.isMove = true;
                 vals.target = cur;
                 cur.component.draw(this.stack.ctx, cur.select);
-
-                if(vals.selectType === 'text') {
-                    let { fontSize, fontFamily, color } = cur.component.attrs;
-                    fontFormat.size.children().attr('selected',false);
-                    fontFormat.size.children(`option[value="${fontSize}"]`).attr('selected',true);
-                    console.log(fontSize);
-                    console.log(fontFamily);
-                    fontFormat.family.children().attr('selected',false);
-                    fontFormat.family.children(`option[value="${fontFamily}"]`).attr('selected',true);
-                    console.log(color);
-                    // ! TODO：工具栏颜色盘显示问题
-                    //fontFormat.color.value = color;
-                    //fontFormat.color.css('color',color);
-                }
-
+                hideAll();
+                controls[vals.selectType] && controls[vals.selectType].css('display','block');
+                detailPanel.addClass('fadeIn');
                 return;
             }
         }
 
         // 什么都没点的时候，选择的目标为null
         vals.target = null;
-
+        detailPanel.removeClass('fadeIn');
+        hideAll();
     },
     'mouseup': function (e, vals) {
         vals.isMove = '';

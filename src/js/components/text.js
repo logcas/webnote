@@ -17,20 +17,24 @@ class Text extends Frame{
         select && super.draw(ctx);
 
         let attrs = this.attributes;
-        attrs.fontSize || (attrs.fontSize = '30px');
+        //attrs.fontSize || (attrs.fontSize = '30px');
         attrs.fontFamily || (attrs.fontFamily = 'Arial');
         attrs.fontBold || (attrs.fontBold = '');
         attrs.fontItalic || (attrs.fontItalic = '');
-        attrs.lineHeight || (attrs.lineHeight = parseInt(attrs.fontSize) / 3);
+        //attrs.lineHeight || (attrs.lineHeight = parseInt(attrs.fontSize) / 3);
 
-        let font = `${attrs.fontBold} ${attrs.fontItalic} ${attrs.fontSize} ${attrs.fontFamily}`,
-            color = attrs.color || (attrs.color = '#000'),
+        let color = attrs.color || (attrs.color = '#000'),
             text = attrs.text || (attrs.text = ''),
             x = attrs.x || (attrs.x = 0),
             y = attrs.y || (attrs.y = 0),
             width = attrs.width || (attrs.width = 0);
 
         text = text.split('\n');
+
+        attrs.lineHeight = attrs.height / text.length;
+        attrs.fontSize = attrs.fontSize || parseInt(attrs.lineHeight * 0.85) + 'px';
+
+        let font = `${attrs.fontBold} ${attrs.fontItalic} ${attrs.fontSize} ${attrs.fontFamily}`;
 
         ctx.save();
         ctx.beginPath();
@@ -40,7 +44,7 @@ class Text extends Frame{
         ctx.fillStyle = color;
 
         for(let i = 0,len = text.length;i<len;++i) {
-            ctx.fillText(text[i], x, y + (attrs.lineHeight + parseInt(attrs.fontSize)) * i, width);
+            ctx.fillText(text[i], x, y + (attrs.lineHeight) * i, width);
         }
 
         ctx.restore();
