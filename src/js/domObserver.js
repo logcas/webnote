@@ -75,6 +75,7 @@ class DomObserver {
                     if(!cur) return;
 
                     this.componentStack.remove(cur.component);
+                    this.statusManager.eventValues.target = null;
                     this.componentStack.render();
                 }
             }

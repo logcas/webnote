@@ -12,6 +12,8 @@ import config from '../config/common';
 
 import DomObserver from './domObserver';
 
+import _Image from './components/image';
+
 const WIDTH = config.WIDTH,
     HEIGHT = config.HEIGHT;
 
@@ -51,6 +53,7 @@ class WebNote {
         this.attributes.cpCanvas.oncontextmenu = function(e) {
             e.preventDefault();
         }
+        this.initDropEvent();
     }
 
     initStatus() {
@@ -73,7 +76,7 @@ class WebNote {
 
     observeToolBar() {
         _.delegate(this.attributes.toolBar, 'span', 'click', (e) => {
-
+            /*
             let format = e.target.getAttribute('data-text-format');
             if (format) {
                 let cur = this.statusManager.eventValues.target;
@@ -98,6 +101,7 @@ class WebNote {
                 }
                 return;
             }
+            */
 
             let status = e.target.getAttribute('data-type');
             status || (status = 'select');
@@ -140,8 +144,51 @@ class WebNote {
             fontFamily.appendChild(createOption(fontName, dict[fontName]));
         }
 
+        $('span[data-toggle="tooltip"]').tooltip();
+    }
 
+    initDropEvent() {
+        let canvas = this.attributes.cpCanvas,
+            componentStack = this.componentStack,
+            handler = function(e) {
+                e.preventDefault();
 
+                if(e.type === 'drop') {
+                    let files = e.dataTransfer.files;
+                    console.log(files);
+
+                    [].forEach.call(files,(f => {
+                        console.log('load');
+                        if(!f || !/image/.test(f.type)) return;
+
+                        console.log('start loading');
+
+                        let reader = new FileReader();
+                        reader.readAsDataURL(f);
+                        reader.onerror = function() {
+                            alert("图片读取失败");
+                        }
+
+                        reader.onload = function() {
+                            let img = new Image();
+                            img.src = reader.result;
+                            img.onload = function() {
+                                componentStack.add(new _Image({
+                                    x:0,
+                                    y:0,
+                                    width: img.width,
+                                    height: img.height,
+                                    img: img
+                                },componentStack));
+                            }
+                            componentStack.render();
+                        }
+                    }));
+                }
+            };
+        _.on(canvas,'dragenter',handler);
+        _.on(canvas,'dragover',handler);
+        _.on(canvas,'drop',handler);
     }
 }
 
