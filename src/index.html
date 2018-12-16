@@ -25,28 +25,46 @@
         </ul>
         <div class="panel panel-default detailPanel">
             <div class="panel-heading">
-              <h3 class="panel-title">控制面板</h3>
+                <h3 class="panel-title">控制面板</h3>
             </div>
             <div class="panel-body">
-              <ul class="fontControl">
-                  <li><strong>字体</strong><select name="fontSize" class="form-control"></select></li>
-                  <li><strong>字号</strong><select name="fontFamily" class="form-control"></select></li>
-                  <li><strong>字体颜色</strong><input type="color" name="fontColor"></li>
-                  <li>
-                      <strong>字体样式</strong>
-                      <div class="btn-group" role="group" aria-label="..." name="fontStyle">
-                        <button type="button" class="btn btn-default" name="fontBold"><span data-text-format="bold" class="glyphicon glyphicon-bold" aria-hidden="true" title="粗体"></span>粗体</button>
-                        <button type="button" class="btn btn-default" name="fontItalic"><span data-text-format="italic" class="glyphicon glyphicon-italic" aria-hidden="true" title="斜体"></span>斜体</button>
-                        <button type="button" class="btn btn-default" name="fontShadow"><span data-text-format="shadow" class="glyphicon glyphicon-italic" aria-hidden="true" title="斜体"></span>阴影</button>
-                      </div>
-                  </li>
-                  <li><strong>行高</strong><input type="number" name="lineHeight" class="form-control" min="0" max="80" style="width:80px;display: inline-block">px</li>
-                  <li>
-                      <button type="button" name="remove" class="btn btn-danger btn-block">删除文本</button>
-                      <p><strong>*为了防止误点击，请双击删除按钮以删除组件</strong></p>
-                  </li>
-              </ul>
-              <ul class="imageControl">
+                <ul class="fontControl">
+                    <li><strong>字号</strong><select name="fontSize" class="form-control"></select></li>
+                    <li><strong>字体</strong><select name="fontFamily" class="form-control"></select></li>
+                    <li><strong>字体颜色</strong><input type="color" name="fontColor"></li>
+                    <li>
+                        <strong>字体样式</strong>
+                        <div class="btn-group" role="group" aria-label="..." name="fontStyle">
+                            <button type="button" class="btn btn-default" name="fontBold"><span data-text-format="bold"
+                                    class="glyphicon glyphicon-bold" aria-hidden="true" title="粗体"></span>粗体</button>
+                            <button type="button" class="btn btn-default" name="fontItalic"><span data-text-format="italic"
+                                    class="glyphicon glyphicon-italic" aria-hidden="true" title="斜体"></span>斜体</button>
+                            <button type="button" class="btn btn-default" name="fontShadow"><span data-text-format="shadow"
+                                    class="glyphicon glyphicon-italic" aria-hidden="true" title="斜体"></span>阴影</button>
+                        </div>
+                    </li>
+                    <li><strong>行高</strong><input type="number" name="lineHeight" class="form-control" min="0" max="80"
+                            style="width:80px;display: inline-block">px</li>
+                    <li>
+                        <button type="button" name="remove" class="btn btn-danger btn-block">删除文本</button>
+                        <p><strong>*为了防止误点击，请双击删除按钮以删除组件</strong></p>
+                    </li>
+                </ul>
+                <ul class="imageControl">
+                    <li>
+                        <div class="input-group">
+                            <div class="input-group-addon">高度</div>
+                            <input type="text" class="form-control" name="imageHeight">
+                            <div class="input-group-addon">px</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input-group">
+                            <div class="input-group-addon">宽度</div>
+                            <input type="text" class="form-control" name="imageWidth">
+                            <div class="input-group-addon">px</div>
+                        </div>
+                    </li>
                     <li>
                         <button type="button" name="remove" class="btn btn-danger btn-block">删除图片</button>
                         <p><strong>*为了防止误点击，请双击删除按钮以删除组件</strong></p>
@@ -55,10 +73,12 @@
             </div>
         </div>
         <ul class="toolbar">
-            <li data-type="select"><span data-type="select" class="glyphicon glyphicon-asterisk" data-toggle="tooltip" aria-hidden="true"
-                    title="选择" data-placement="bottom"></span></li>
-            <li><span data-type="text" class="glyphicon glyphicon-pencil" data-toggle="tooltip" aria-hidden="true" title="文字" data-placement="bottom"></span></li>
-            <li><span data-type="image" class="glyphicon glyphicon-picture" data-toggle="tooltip" aria-hidden="true" title="图片/背景" data-placement="bottom"></span></li>
+            <li><span data-type="select" class="glyphicon glyphicon-asterisk toolbar-item" data-toggle="tooltip"
+                    aria-hidden="true" title="选择" data-placement="bottom"></span></li>
+            <li><span data-type="text" class="glyphicon glyphicon-pencil toolbar-item" data-toggle="tooltip"
+                    aria-hidden="true" title="文字" data-placement="bottom"></span></li>
+            <li><span data-type="image" class="glyphicon glyphicon-picture toolbar-item" data-toggle="tooltip"
+                    aria-hidden="true" title="图片/背景" data-placement="bottom"></span></li>
         </ul>
         <div class="container">
             <canvas id="canvas">你的浏览器不支持canvas</canvas>

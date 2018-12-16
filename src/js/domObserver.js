@@ -10,6 +10,7 @@ class DomObserver {
     }
 
     init() {
+        // 字体面板
         this.observe('fontPanel','ul.fontControl',{
             'click': function(e) {
                 let target = e.target;
@@ -65,6 +66,34 @@ class DomObserver {
             },
         });
 
+        // 图片面板
+        this.observe('imagePanel','ul.imageControl',{
+            'change': function(e) {
+                if(e.target.tagName.toLowerCase() === 'input') {
+
+                    let val = e.target.value,
+                        cur = this.statusManager.eventValues.target;
+
+                    if(!cur || !val) return;
+
+                    switch(e.target.name) {
+                        case 'imageHeight':
+                        cur.component.setAttr({
+                            height: val
+                        });
+                        break;
+                        case 'imageHeight':
+                        cur.component.setAttr({
+                            width: val
+                        });
+                        break;
+                    }
+
+                }
+            }
+        })
+
+        // 总面板
         this.observe('detailPanel','div.detailPanel',{
             'dblclick': function(e) {
                 // 删除组件

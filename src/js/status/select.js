@@ -44,6 +44,45 @@ function hideAll() {
     }
 }
 
+const setControl = function() {
+
+    let fontControl = {
+        'fontFamily': $('select[name="fontFamily"]'),
+        'fontSize': $('select[name="fontSize"]'),
+        'fontColor': $('input[name="fontColor"]'),
+        'lineHeight': $('input[name="lineHeight"]')
+    },
+       ImageControl = {
+           'imageHeight': $('input[name="imageHeight"]'),
+           'imageWidth': $('input[name="imageWidth"]')
+       };
+
+    return {
+        text: function(stylesheet) {
+            fontControl.fontFamily.children('option').attr('selected',false);
+            let f = fontControl.fontFamily.children('option[value="' + stylesheet.fontFamily + '"]');
+            f.prop('selected',true);
+
+            fontControl.fontSize.children('option').attr('selected',false);
+            let targetSize = fontControl.fontSize.children('option[value="' + stylesheet.fontSize + '"]');
+            if(targetSize.length) {
+                targetSize.prop('selected',true);
+            } else {
+                fontControl.fontSize.append('<option value="' + stylesheet.fontSize + '" selected>' + stylesheet.fontSize +'</option>').prop('selected',true);
+            }
+
+            fontControl.lineHeight.val(stylesheet.lineHeight);
+        },
+        image: function(stylesheet) {
+
+            ImageControl.imageHeight.val(stylesheet.height);
+            ImageControl.imageWidth.val(stylesheet.width);
+
+        }
+    }
+
+}
+
 const select = {
     'mouseover': function (e, vals) {},
     'mousedown': function (e, vals) {
@@ -72,6 +111,7 @@ const select = {
             vals.isMove = true;
             vals.target.component.draw(this.stack.ctx, true);
             hideAll();
+            setControl()[vals.selectType](vals.target.component.attrs);
             controls[vals.selectType] && controls[vals.selectType].css('display','block');
             detailPanel.addClass('fadeIn');
             return;
@@ -86,6 +126,7 @@ const select = {
                 vals.target = cur;
                 cur.component.draw(this.stack.ctx, cur.select);
                 hideAll();
+                setControl()[vals.selectType](vals.target.component.attrs);
                 controls[vals.selectType] && controls[vals.selectType].css('display','block');
                 detailPanel.addClass('fadeIn');
                 return;
@@ -114,6 +155,7 @@ const select = {
                 if (cp.select) {
                     let attrs = cp.component.attrs;
                     cp.component.setAttr(resizeHook[vals.resize](attrs, deltaX, deltaY));
+                    setControl()[vals.selectType](cp.component.attrs);
                 }
             });
             return;

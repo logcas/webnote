@@ -76,6 +76,10 @@ ul {
     box-shadow: 0 0 20px #C5D9E8;
     z-index: 99;
 
+    .toolbar-item:hover {
+        color: #6190E8;
+    }
+
 }
 
 .app .toolbar li {
